@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -11,17 +10,20 @@ export default function FrequentSwiper() {
   const totalSlides = 10;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(3);
-  const [isClient, setIsClient] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
 
+  // Track window size
   useEffect(() => {
-    setIsClient(true);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize width
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  if (!isClient) return null; // Prevents mismatch during SSR
 
   return (
     <div className="container">
       <Swiper
+        key={windowWidth} // Forces re-render on resize
         modules={[Pagination]}
         spaceBetween={20}
         slidesPerView={slidesPerView}
@@ -36,6 +38,8 @@ export default function FrequentSwiper() {
               : 3;
           setSlidesPerView(newSlidesPerView);
         }}
+        observer={true}
+        observeParents={true}
         breakpoints={{
           320: { slidesPerView: 1, spaceBetween: 10 },
           640: { slidesPerView: 2, spaceBetween: 15 },
