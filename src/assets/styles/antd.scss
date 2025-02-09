@@ -1,0 +1,65 @@
+//--------------------------------------- header navbar ---------------------------------------
+.ant-layout-header .ant-menu {
+  line-height: inherit;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+.ant-layout-header {
+  height: auto !important;
+  padding: 0px 20px !important;
+  background-color: white !important;
+  box-shadow: 0px 1px 2px 0px rgba(24, 29, 39, 0.05);
+}
+.ant-menu-light.ant-menu-horizontal {
+  height: 100%;
+}
+.ant-menu-light.ant-menu-horizontal > .ant-menu-item::after {
+  inset-inline: 0px !important;
+  bottom: 20px !important;
+  width: 8px !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+.ant-layout-header .ant-menu {
+  font-weight: 500;
+}
+.navbarWrapper,
+.navbarMobileWrapper {
+  .ant-select-selector {
+    border: 1px solid transparent !important;
+  }
+  .ant-select-single.ant-select-open .ant-select-selection-item,
+  .ant-select-single .ant-select-selector .ant-select-selection-item {
+    color: var(--primary-color) !important;
+    font-weight: 500 !important;
+  }
+}
+//--------------------------------------- ant btn ---------------------------------------
+.ant-btn {
+  padding: 19px 14px !important;
+  font-size: 14px !important;
+}
+
+//------------ ghost btn ------------
+.ant-btn-color-primary.ant-btn-background-ghost {
+  border-color: transparent !important;
+}
+
+.ant-btn-color-primary.ant-btn-background-ghost {
+  color: var(--greenish-black) !important;
+}
+.ant-btn-color-primary.ant-btn-background-ghost:hover {
+  background-color: #8db820 !important;
+}
+//--------------------------------------- ant input ---------------------------------------
+.ant-input-outlined {
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(213, 215, 218, 1) !important;
+}
+.ant-form-item .ant-form-item-label > label {
+  color: var(--dark-gray) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}

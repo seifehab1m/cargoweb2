@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "antd.scss";
+
+:root {
+  --primary-color: #1c2d63;
+  --primary-color-light: #3f60c9;
+  --primary-color-alt: #6580d4;
+  --secondary-color: #97c620;
+  --secondary-color-light: #dff2af;
+
+  --dark-gray: #474747;
+  --greenish-black: #080b02;
+}
+// #6580D4
+body {
+  overflow-x: hidden;
+}
+h1 {
+  font-size: 48px;
+  font-weight: 500;
+  color: white;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+//----------------------------- swiper -----------------------------
+.swiper-pagination-bullet {
+  background: var(--primary-color-alt) !important; /* Bullet color */
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  width: 32px !important; /* Active bullet width */
+  height: 12px;
+  border-radius: 16px !important;
+  background-color: var(--primary-color-alt) !important; /* Bullet color */
+}
+.swiper-pagination {
+  text-align: end !important;
+}
