@@ -4,7 +4,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import FrequentSwiperCard from "./FrequentSwiperCard";
-import { useTranslations } from "next-intl";
+import PaginationSwiper from "./PaginationSwiper";
 
 export default function FrequentSwiper() {
   const totalSlides = 10;
@@ -24,7 +24,7 @@ export default function FrequentSwiper() {
 
   return (
     <div className="container">
-      <h2>cargowebb</h2>
+      <h2>cargowebb2</h2>
       <Swiper
         key={windowWidth} // Forces re-render on resize
         modules={[Pagination]}
@@ -59,25 +59,3 @@ export default function FrequentSwiper() {
   );
 }
 
-function PaginationSwiper({
-  currentIndex,
-  slidesPerView,
-  totalSlides,
-}: {
-  currentIndex: number;
-  slidesPerView: number;
-  totalSlides: number;
-}) {
-  const t = useTranslations("");
-
-  return (
-    <div className="flex justify-end">
-      <div className="custom-pagination-container flex flex-col md:flex-row items-center gap-1">
-        <span className="pagination-number text-darkGray text-nowrap">
-          {Math.min(currentIndex + slidesPerView, totalSlides)} {t("of")} {totalSlides}
-        </span>
-        <div className="custom-pagination"></div>
-      </div>
-    </div>
-  );
-}
