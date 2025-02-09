@@ -4,22 +4,23 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import FrequentSwiperCard from "./FrequentSwiperCard";
-// import PaginationSwiper from "./PaginationSwiper";
 import { useTranslations } from "next-intl";
 
 export default function FrequentSwiper() {
   const totalSlides = 10;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slidesPerView, setSlidesPerView] = useState(3);
   const [windowWidth, setWindowWidth] = useState(0);
-
-  // Track window size
+  
+  // Update window size
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-    handleResize(); // Initialize width
+    handleResize(); // Set initial value
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Determine slidesPerView dynamically
+  const slidesPerView = windowWidth < 640 ? 1 : windowWidth < 1024 ? 2 : 3;
 
   return (
     <div className="container">
@@ -29,17 +30,10 @@ export default function FrequentSwiper() {
         modules={[Pagination]}
         spaceBetween={20}
         slidesPerView={slidesPerView}
-        slidesPerGroup={slidesPerView}
+        slidesPerGroup={1}
         loop={false}
         pagination={{ clickable: true, el: ".custom-pagination" }}
         onActiveIndexChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-        onResize={(swiper) => {
-          const newSlidesPerView =
-            typeof swiper.params.slidesPerView === "number"
-              ? swiper.params.slidesPerView
-              : 3;
-          setSlidesPerView(newSlidesPerView);
-        }}
         observer={true}
         observeParents={true}
         breakpoints={{
@@ -55,6 +49,7 @@ export default function FrequentSwiper() {
         ))}
       </Swiper>
 
+      {/* Updated Pagination Component */}
       <PaginationSwiper
         currentIndex={currentIndex}
         slidesPerView={slidesPerView}
@@ -63,6 +58,7 @@ export default function FrequentSwiper() {
     </div>
   );
 }
+
 function PaginationSwiper({
   currentIndex,
   slidesPerView,
@@ -78,8 +74,7 @@ function PaginationSwiper({
     <div className="flex justify-end">
       <div className="custom-pagination-container flex flex-col md:flex-row items-center gap-1">
         <span className="pagination-number text-darkGray text-nowrap">
-          {Math.min(currentIndex + slidesPerView, totalSlides)} {t("of")}{" "}
-          {totalSlides}
+          {Math.min(currentIndex + slidesPerView, totalSlides)} {t("of")} {totalSlides}
         </span>
         <div className="custom-pagination"></div>
       </div>
